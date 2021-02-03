@@ -1,0 +1,12 @@
+depends on the fission library fromm LLNL
+https://nuclear.llnl.gov/simulation/fission_v2.0.5/fission_v2.0.5.tar.gz
+
+to build the project
+
+mkdir build
+
+cd build
+
+cmake ../ -DUSE_FISSION_NEW:BOOL=ON -DUSE_FREYA:BOOL=ON -DFISSION_DIR:PATH='/path/to/fission_v2.0.5'
+
+make

@@ -1,0 +1,33 @@
+
+/control/verbose 0
+/control/saveHistory
+/run/verbose 0
+#set interval for printing information
+/run/printProgress 1000000
+
+#---Model first the beta+ decay mode------
+
+/gps/source/clear
+
+#-----First gamma-line----------------------
+/gps/source/add 1.0
+/gps/pos/centre 0 0 24.146 cm 
+# /gps/verbose 1
+/gps/particle gamma
+
+# the incident surface is in the x-y plane
+#/gps/pos/type Plane
+/gps/pos/type Point
+
+# isotropic source
+/gps/ang/type iso
+#/gps/ang/mintheta 90 deg
+
+#mono energetic source
+/gps/ene/type Mono
+/gps/ene/mono 661.657 keV
+
+#set output filename (default is Response)
+/analysis/setFileName Cs137_stilbene
+
+#/run/beamOn 10000000

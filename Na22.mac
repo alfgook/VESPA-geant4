@@ -1,0 +1,82 @@
+
+/control/verbose 0
+/control/saveHistory
+/run/verbose 0
+#set interval for printing information
+/run/printProgress 1000000
+
+#---Model first the beta+ decay mode------
+
+/gps/source/clear
+/gps/source/multiplevertex true
+
+#generate two gamma rays per event: (1) 511 keV from positron annihilation and (2) 1275 keV from subsequent decay of daughter.
+#To take into account that there are two annihilation photons per beta decay and that they are colinear I limit the 511 kev gammas
+#emmission angle to [180,90] deg, hence 511 will always hit detector volume but 50% of the 1275 will not
+#-----First gamma-line----------------------
+/gps/source/add 1.0
+/gps/pos/centre 0 0 24.046 cm 
+# /gps/verbose 1
+/gps/particle gamma
+
+# the incident surface is in the x-y plane
+#/gps/pos/type Plane
+/gps/pos/type Point
+
+# isotropic source
+/gps/ang/type iso
+
+#mono energetic source
+/gps/ene/type Mono
+/gps/ene/mono 1274.5 keV
+
+#-----Second gamma-line----------------------
+/gps/source/add 1.0
+/gps/pos/centre 0 0 24.046 cm 
+
+/gps/particle gamma
+
+# the incident surface is in the x-y plane
+#/gps/pos/type Plane
+/gps/pos/type Point
+
+# isotropic source
+/gps/ang/type iso
+/gps/ang/mintheta 90 deg
+
+#mono energetic source
+/gps/ene/type Mono
+/gps/ene/mono 510.9989 keV
+
+#set output filename (default is Response)
+/analysis/setFileName Na22_beta_stilbene
+
+# event rate is about 5000 events/s/worker (4 workers are used so 20 000 events/s)
+/run/beamOn 10000000
+
+#---Model the EC decay mode------
+
+/gps/source/clear
+/gps/source/multiplevertex false
+
+#-----First gamma-line----------------------
+/gps/source/add 1.0
+/gps/pos/centre 0 0 24.046 cm 
+# /gps/verbose 1
+/gps/particle gamma
+
+# the incident surface is in the x-y plane
+#/gps/pos/type Plane
+/gps/pos/type Point
+
+# isotropic source
+/gps/ang/type iso
+
+#mono energetic source
+/gps/ene/type Mono
+/gps/ene/mono 1274.5 keV
+
+#set output filename (default is Response)
+/analysis/setFileName Na22_EC_stilbene
+
+/run/beamOn 10000000

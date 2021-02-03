@@ -1,0 +1,54 @@
+
+/control/verbose 0
+/control/saveHistory
+/run/verbose 0
+#set interval for printing information
+/run/printProgress 100000
+
+# /gps/verbose 1
+
+/gps/particle neutron
+
+#
+#
+# the incident surface is in the x-y plane
+# /gps/pos/type Plane
+/gps/pos/type Point
+#
+# the incident surface is a disc of 2 cm
+#/gps/pos/shape Circle 
+/gps/pos/centre 0. 0. 55. cm
+#/gps/pos/radius 2. cm
+
+# isotropic source
+#/gps/ang/type iso
+
+# isotropic source limited to cone of detector
+/gps/ang/type iso
+#/gps/ang/maxtheta 7.4094 deg
+/gps/ang/mintheta 174.2 deg
+
+# focused beam
+#set the focusing point, default is (0, 0, 0)
+#/gps/ang/type focused
+#/gps/ang/focuspoint 0 0 25 cm
+
+#
+# the particle source energy is mono energetic
+#/gps/ene/type Mono
+#/gps/ene/mono 4 MeV
+# the particle source energy follows user defined distribution
+# gps/hist/type energy
+# The particle source is flat spectrum [min, max]
+ /gps/ene/type Lin
+ /gps/ene/min 0.2 MeV
+ /gps/ene/max 13 MeV
+ /gps/ene/intercept 1
+ /gps/ene/gradient 0
+
+# /process/list
+
+#turn off thermal scattering
+/analysis/setFileName Eff-LS301-4inch
+
+/run/beamOn 10000000

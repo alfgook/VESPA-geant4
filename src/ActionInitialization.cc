@@ -60,8 +60,8 @@ void ActionInitialization::Build() const
 {
 
     SetUserAction(new RunAction);
-    //SetUserAction(new PrimaryGeneratorAction);
-    SetUserAction(new PrimaryGeneratorActionFREYA);
+    SetUserAction(new PrimaryGeneratorAction);
+    //SetUserAction(new PrimaryGeneratorActionFREYA);
 	EventAction *eventAction = new EventAction();
     SetUserAction(eventAction);
 	TrackingAction *trackingAction = new TrackingAction(eventAction);

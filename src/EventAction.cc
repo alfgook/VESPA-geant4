@@ -101,7 +101,6 @@ void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
-
     // get analysis manager
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
@@ -212,6 +211,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
 		analysisManager->FillNtupleIColumn(colNbr, PDGcode);
 	}
 
+	analysisManager->FillNtupleDColumn(57, iEnergy);
 	if(FillTree) analysisManager->AddNtupleRow(); //only write ntuples when there are hits in the detectors
 
 	/*theTimer.Stop();

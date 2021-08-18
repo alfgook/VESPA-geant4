@@ -142,6 +142,8 @@ RunAction::RunAction()
 
     analysisManager->CreateNtupleIColumn("mult_gamma");
 
+    analysisManager->CreateNtupleDColumn("init_energy");
+
    	analysisManager->FinishNtuple();
     //analysisManager->SetNtupleMerging(true);
 

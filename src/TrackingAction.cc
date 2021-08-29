@@ -31,9 +31,9 @@ void TrackingAction::PreUserTrackingAction(const G4Track* aTrack)
 		tr->SetTrackStatus(fStopAndKill);
 	}
 
-	if(!aTrack->GetParentID()) {
+	/*if(!aTrack->GetParentID()) {
 		fEventAction->SetInitial(aTrack->GetVertexKineticEnergy(),aTrack->GetVertexMomentumDirection().getZ());
-	}
+	}*/
 }
 
 void TrackingAction::PostUserTrackingAction(const G4Track* aTrack)

@@ -107,7 +107,7 @@ void PrimaryGeneratorFREYA::GeneratePrimaryVertex(G4Event* event)
   for(G4int fragment=0; fragment<2; fragment++) {
     aFission->getFissionFragment(fragment,A[fragment],Z[fragment],KE[fragment],FFdirection[fragment],
                                   preEvapExcEnergy[fragment], postEvapExcEnergy[fragment]);
-    //Apre[fragment] = aFission->getFFpreNeutronMasses(fragment);
+    Apre[fragment] = aFission->getFFpreNeutronMasses(fragment);
     analysisManager->FillH2(fragment,A[fragment],KE[fragment]);
     analysisManager->FillNtupleDColumn(colNbr++, KE[fragment]);
     analysisManager->FillNtupleIColumn(colNbr++, A[fragment]);
@@ -125,8 +125,8 @@ void PrimaryGeneratorFREYA::GeneratePrimaryVertex(G4Event* event)
   G4int nPrompt = aFission->getNeutronNu();
   if(nPrompt == -1) nPrompt = 0; // the fission library libFission.a has no data for neutrons
 
-  //G4int nu0 = Apre[0] - A[0];
-  //G4int nu1 = Apre[1] - A[1];
+  G4int nu0 = Apre[0] - A[0];
+  G4int nu1 = Apre[1] - A[1];
 
   for(G4int i=0; i<nPrompt; i++) {
     G4PrimaryParticle* particle = new G4PrimaryParticle(G4Neutron::Neutron());
@@ -136,7 +136,7 @@ void PrimaryGeneratorFREYA::GeneratePrimaryVertex(G4Event* event)
                        aFission->getNeutronDircosw(i));
     particle->SetMomentumDirection(direction);
     particle->SetKineticEnergy(aFission->getNeutronEnergy(i)*MeV);
-    //theVertex->SetPrimary(particle); ++nGenerated;
+    theVertex->SetPrimary(particle); ++nGenerated;
 
     analysisManager->FillH1(0,aFission->getNeutronEnergy(i)*MeV);
   }

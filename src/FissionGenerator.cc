@@ -54,7 +54,7 @@ fissionEvent* FissionGenerator::newFissionEvent(int iso, double time, double nub
 	    }
 	  }
 	#endif
-	//l.unlock();
+	l.unlock();
 
 	/*++nGenerated;
 	if(!(nGenerated%1000)) {
